@@ -1,15 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Car Detail</title>
-</head>
-<body>
-		<h1>
-			{{car.make}} - {{car.model}}
-			<small>
-				{{car.year}}
-			</small>
-		</h1>
-		<hr>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{%block title%}Car Details{%endblock title%}
+
+{% block content%}
+
+<div class="container ">
+
+	<div class="jumbotron mt-5 mx-auto">
+		<h1 class="display-4">{{car.make}} - {{car.model}}</h1>
+		{% if car.img %}
+		<img src="{{car.img.url}}" class="card-img-top" alt="...">
+		{%endif%}
+		<p class="lead">{{car.year}}</p>
+		<hr class="my-4">
+		<a class="btn btn-primary btn-lg" href="#" role="button">BUY NOW!</a>
+		<a class="btn btn-info btn-lg" href="{% url 'car-update' car.id	 %}">update</a>
+		<a class="btn btn-danger btn-lg" href="{% url 'car-delete' car.id %}">delete</a>
+	</div>
+</div>
+
+{% endblock content%}
